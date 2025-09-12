@@ -1,0 +1,7 @@
+{
+  "/chat": {
+    "target": "http://localhost:8091",
+    "secure": false,
+    "changeOrigin": true
+  }
+}

@@ -1,0 +1,48 @@
+<div class="chat-wrapper">
+
+  <div class="employee-id-container">
+    <label for="employeeIdInput" class="employee-label">Identyfikator pracownika</label>
+    <input
+      id="employeeIdInput"
+      [(ngModel)]="employeeId"
+      placeholder="Wpisz identyfikator pracownika..."
+    />
+  </div>
+
+  <div class="chat-container">
+
+    <div class="messages">
+      @for (msg of messages; track msg) {
+        <div class="message" [ngClass]="msg.type">
+          {{ msg.content }}
+        </div>
+      }
+      <div #chatEnd></div>
+    </div>
+
+    <div class="input-container">
+      <input
+        [(ngModel)]="input"
+        (keydown.enter)="sendMessage()"
+        placeholder="Napisz coś..."
+      />
+      <button (click)="sendMessage()">Wyślij</button>
+    </div>
+  </div>
+
+  @if (sources.length > 0) {
+    <div class="sources">
+      <h3>Źródła odpowiedzi AI</h3>
+      <ul>
+        @for (src of sources; track src.fileName; let i = $index) {
+          <li>
+            <div>{{i + 1}}. (score: {{ src.score | number: '1.2-2' }})</div>
+            <strong>Nazwa pliku: </strong>{{ src.fileName }}
+            <div class="source-text">Tekst: {{ src.text }}</div>
+          </li>
+        }
+      </ul>
+    </div>
+  }
+
+</div>
